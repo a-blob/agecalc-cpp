@@ -1,3 +1,3 @@
-# agecalc-oop (WIP)
+# agecalc-oop (Work in Progress)
 
-An age-calculation system with a fast and easy-to-use custom made algorithm, up to the days in accuracy. Made with object-oriented programming.
+* An age-calculation program with a custom made algorithm, up to the days in accuracy. An alternative version of [this](https://github.com/a-blob/age-calculator) but made with C++ and with OOP.
