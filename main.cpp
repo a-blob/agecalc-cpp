@@ -15,5 +15,13 @@ int main() {
 		cout << "Please input valid numbers!\n\n";
 	}
 
+	if (run_getinfo.is_leapyear(run_getinfo.bdate.year)) {
+		cout << "Is birth-month leap year: True" << endl;
+	}
+	else {
+		cout << "Is birth-month leap year: False" << endl;
+	}
+
+	run_getinfo.getmonthtype();
 	return 0;
 }

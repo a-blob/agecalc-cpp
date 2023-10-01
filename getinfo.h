@@ -17,9 +17,16 @@ public:
 	struct1 bdate;
 	struct1 cdate;
 
+	int monthtype;
+	int legal_month_value;
+
 	bool check_number(string ts1, string ts2, string ts3);
 	bool get_bdate();
 	void def_cdate();
+	bool is_leapyear(double subject_year);
+	void getmonthtype();
+//private:
+	//bool isWholeNumber(double num);
 };
 
 #endif // !GETINFO__H__

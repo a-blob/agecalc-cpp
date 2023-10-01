@@ -1,4 +1,6 @@
 #include "getinfo.h"
+#include <cmath>
+#include <string>
 
 // define the arrays
 int lm[] = { 1, 3, 5, 7, 8, 10, 12 };
@@ -33,6 +35,11 @@ bool Getinfo::get_bdate() {
 	cout << "Please input the day: ";
 	cin >> nc3;
 	if (check_number(nc1, nc2, nc3)) {
+		bdate.year = stoi(nc1);
+		bdate.month = stoi(nc2);
+		bdate.day = stoi(nc3);
+		cout << "\nYour birthday is: " << bdate.month << "/"
+			<< bdate.day << "/" << bdate.year << "\n\n";
 		return true;
 	}
 	else {
@@ -52,8 +59,65 @@ void Getinfo::def_cdate() {
 	cdate.month = now.tm_mon + 1;
 	cdate.day = now.tm_mday;
 
-	cout << cdate.year << endl;
-	cout << cdate.month << endl;
-	cout << cdate.day << endl;
+	cout << "Today is: " << cdate.month << "/"
+		<< cdate.day << "/" << cdate.year << "\n\n";
+
 }
 
+
+// determin if the year is leap year
+bool Getinfo::is_leapyear(double subect_year) {
+	double year_test = subect_year / 100;
+	if (year_test == floor(year_test)) {
+		double year_test2 = subect_year / 400;
+		if (year_test2 == floor(year_test2)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		double year_test2 = subect_year / 4;
+		if (year_test2 == floor(year_test2)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+}
+
+// determin if the month is flat or odd
+void Getinfo::getmonthtype() {
+	int monthtype = -1;
+	int legal_month_value;
+
+	if (is_leapyear(bdate.year)) {
+		legal_month_value = 29;
+	}
+	else {
+		legal_month_value = 28;
+	}
+
+	bool found = false;
+
+	for (int i = 0; i < sizeof(lm) / sizeof(lm[0]); i++) {
+		if (lm[i] == bdate.month) {
+			found = true;
+			monthtype = 1;
+			legal_month_value = 31;
+			cout << "\nThe birth-month is a 31-day month.\n";
+		}
+	}
+	if (!found) {
+		for (int i = 0; i < sizeof(sm) / sizeof(sm[0]); i++) {
+			if (sm[i] == bdate.month) {
+				found = true;
+				monthtype = 0;
+				legal_month_value = 30;
+				cout << "The birth-month is a 30-day month.\n";
+			}
+		}
+	}
+}
