@@ -91,7 +91,6 @@ bool Getinfo::is_leapyear(double subect_year) {
 // determin if the month is flat or odd
 void Getinfo::getmonthtype() {
 	int monthtype = -1;
-	int legal_month_value;
 
 	if (is_leapyear(bdate.year)) {
 		legal_month_value = 29;
@@ -107,7 +106,6 @@ void Getinfo::getmonthtype() {
 			found = true;
 			monthtype = 1;
 			legal_month_value = 31;
-			cout << "\nThe birth-month is a 31-day month.\n";
 		}
 	}
 	if (!found) {
@@ -116,8 +114,18 @@ void Getinfo::getmonthtype() {
 				found = true;
 				monthtype = 0;
 				legal_month_value = 30;
-				cout << "The birth-month is a 30-day month.\n";
 			}
 		}
+	}
+cout << "The birth-month is a " << legal_month_value << " day month.\n";
+}
+
+
+bool Getinfo::is_valid() {
+	if (bdate.year >= 0 and bdate.month > 0 and bdate.day > 0 and bdate.month <= 12 and bdate.day <= legal_month_value) {
+		return true;
+	}
+	else {
+		return false;
 	}
 }

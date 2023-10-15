@@ -25,6 +25,7 @@ public:
 	void def_cdate();
 	bool is_leapyear(double subject_year);
 	void getmonthtype();
+	bool is_valid();
 //private:
 	//bool isWholeNumber(double num);
 };
